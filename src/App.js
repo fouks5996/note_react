@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Main from "./components/Main";
-import Sidebar from "./components/Sidebar";
+import ContentNotes from "./components/ContentNotes";
+import ListNotes from "./components/ListNotes";
 import uuid from "react-uuid";
 
 function App() {
@@ -50,8 +50,8 @@ function App() {
 	};
 
 	return (
-		<div className='App'>
-			<Sidebar
+		<div className='flex'>
+			<ListNotes
 				notes={notes}
 				setNotes={setNotes}
 				onAddNote={onAddNote}
@@ -59,7 +59,7 @@ function App() {
 				activeNote={activeNote}
 				setActiveNote={setActiveNote}
 			/>
-			<Main activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
+			<ContentNotes activeNote={getActiveNote()} onUpdateNote={onUpdateNote} />
 		</div>
 	);
 }

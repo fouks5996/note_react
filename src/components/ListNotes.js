@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {} from "@heroicons/react/outline";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
-function Sidebar({
+function ListNotes({
 	notes,
 	onAddNote,
 	onDeleteNote,
@@ -18,9 +18,9 @@ function Sidebar({
 	});
 
 	return (
-		<div className='app-sidebar'>
-			<div className='app-sidebar-header border-b'>
-				<h1 className='text-2xl font-bold'> Notes App </h1>
+		<div className='w-[15%] min-w-[300px] h-screen border-r border-grey'>
+			<div className='flex items-center justify-between px-5 py-4 border-b'>
+				<h1 className='text-2xl m-0 font-bold'> Notes App </h1>
 				<button
 					className='text-zinc-700 p-3 rounded-full flex items-center gap-2 hover:bg-slate-100 hover:text-zinc-700'
 					onClick={onAddNote}>
@@ -48,11 +48,12 @@ function Sidebar({
 				onChange={onChange}
 			/>
 
-			<div ref={parent} className='app-sidebar-notes p-3  flex flex-col gap-2 '>
+			<div ref={parent} className='overflow-y-scroll p-3  flex flex-col gap-2 '>
 				{notesFiltered.map((note) => (
 					<div
-						className={`app-sidebar-note border-b  ${
-							note.id === activeNote && "active rounded-xl border-b-0"
+						className={`cursor-pointer py-[15px] px-[20px] border-b hover:bg-[#f6f6f6] rounded-lg ${
+							note.id === activeNote &&
+							"bg-[#FFE390] hover:bg-[#FFE390] rounded-xl border-b-0"
 						}`}
 						onClick={() => setActiveNote(note.id)}>
 						<div className='flex items-center justify-between'>
@@ -62,7 +63,7 @@ function Sidebar({
 									{note.body && note.body.substr(0, 20) + "..."}
 								</p>
 
-								<small className='note-meta'>
+								<small>
 									{new Date(note.lastModified).toLocaleDateString("fr-FR", {
 										hour: "2-digit",
 										minute: "2-digit",
@@ -98,4 +99,4 @@ function Sidebar({
 	);
 }
 
-export default Sidebar;
+export default ListNotes;
