@@ -34,7 +34,6 @@ function App() {
 			return note;
 		});
 		setNotes(updatedNotesArray);
-		// notes.sort((a, b) => b.lastModified - a.lastModified);
 	};
 
 	const onDeleteNote = (id) => {
@@ -54,6 +53,7 @@ function App() {
 		<div className='App'>
 			<Sidebar
 				notes={notes}
+				setNotes={setNotes}
 				onAddNote={onAddNote}
 				onDeleteNote={onDeleteNote}
 				activeNote={activeNote}

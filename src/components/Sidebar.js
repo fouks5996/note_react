@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {} from "@heroicons/react/outline";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
@@ -10,6 +10,12 @@ function Sidebar({
 	setActiveNote,
 }) {
 	const [parent] = useAutoAnimate(/* optional config */);
+	const [query, setQuery] = useState("");
+
+	const onChange = (e) => setQuery(e.target.value);
+	const notesFiltered = notes.filter((note) => {
+		return note.title.toLowerCase().includes(query.toLowerCase());
+	});
 
 	return (
 		<div className='app-sidebar'>
@@ -34,8 +40,16 @@ function Sidebar({
 				</button>
 			</div>
 
+			<input
+				className='py-2 px-5 m-3 border w-[270px] rounded placeholder:text-sm'
+				type='text'
+				placeholder='Rechercher une note'
+				value={query}
+				onChange={onChange}
+			/>
+
 			<div ref={parent} className='app-sidebar-notes p-3  flex flex-col gap-2 '>
-				{notes.map((note) => (
+				{notesFiltered.map((note) => (
 					<div
 						className={`app-sidebar-note border-b  ${
 							note.id === activeNote && "active rounded-xl border-b-0"
