@@ -10,7 +10,7 @@ function App() {
 	);
 	const [activeNote, setActiveNote] = useState(false);
 
-	notes.sort((a, b) => a.lastModified - b.lastModified);
+	notes.sort((a, b) => b.lastModified - a.lastModified);
 
 	useEffect(() => {
 		localStorage.setItem("notes", JSON.stringify(notes));
@@ -34,6 +34,7 @@ function App() {
 			return note;
 		});
 		setNotes(updatedNotesArray);
+		// notes.sort((a, b) => b.lastModified - a.lastModified);
 	};
 
 	const onDeleteNote = (id) => {
